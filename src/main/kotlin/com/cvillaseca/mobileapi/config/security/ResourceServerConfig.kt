@@ -17,5 +17,7 @@ class ResourceServerConfig : ResourceServerConfigurerAdapter() {
             .antMatchers("/admin/**").hasRole("ADMIN")
             .antMatchers("/user/**").hasRole("USER")
             .antMatchers("/signUp").authenticated()
+        // remover this line above for production purposes
+        http.headers().frameOptions().disable()
     }
 }
