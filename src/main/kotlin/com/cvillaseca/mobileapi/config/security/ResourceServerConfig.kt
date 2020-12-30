@@ -10,13 +10,10 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 class ResourceServerConfig : ResourceServerConfigurerAdapter() {
     override fun configure(http: HttpSecurity) {
         http
-            .csrf().disable()
-            .formLogin().disable()
-            .anonymous().disable()
             .authorizeRequests()
-            .antMatchers("/admin/**").hasRole("ADMIN")
             .antMatchers("/user/**").hasRole("USER")
-            .antMatchers("/signUp").authenticated()
+            .antMatchers("/admin/**").hasRole("ADMIN")
+            .antMatchers("/signUp").permitAll()
         // remover this line above for production purposes
         http.headers().frameOptions().disable()
     }
